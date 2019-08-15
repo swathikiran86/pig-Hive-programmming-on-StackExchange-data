@@ -1,0 +1,28 @@
+#Website for querying
+
+https://data.stackexchange.com/stackoverflow/query/new
+
+#For selecting the range:
+
+select count(*) from posts where posts.ViewCount>86000 
+50553
+
+select count(*) from posts where posts.ViewCount>50000 and posts.ViewCount < 86000
+52023
+
+select count(*) from posts where posts.ViewCount>36000 and posts.ViewCount < 50000
+50283
+
+select count(*) from posts where posts.ViewCount>28000 and posts.ViewCount < 36000
+51803
+
+#For downloading 50000 unique records
+
+select top 50000 * from posts where posts.ViewCount > 86000 ORDER BY posts.ViewCount
+
+select top 50000 * from posts where posts.ViewCount > 50000 and posts.ViewCount < 86000 ORDER BY posts.ViewCount
+
+select top 50000 * from posts where posts.ViewCount > 36000 and posts.ViewCount < 50000 ORDER BY posts.ViewCount
+
+select top 50000 * from posts where posts.ViewCount > 28000 and posts.ViewCount < 36000 ORDER BY posts.ViewCount
+
