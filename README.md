@@ -11,7 +11,7 @@ Tasks Performed:
   1. Extracted the data from the StackExchange database using mysql commands
     Acquired the top 200,000 posts by viewcount. 
     
-     Refer to datafetchingCountQueries file for details
+   Refer to datafetchingCountQueries file for details
 
   2. Using MapReduce/Pig/Hive as required
     Using pig or mapreduce, extracted, transformed and loaded the data as applicable to get : 
@@ -20,7 +20,7 @@ Tasks Performed:
       Query 3) The number of distinct users, who used the word ‘hadoop’ in one of their posts
       Query 3) Using mapreduce calculate the per-user TF-IDF (just submit the top 10 terms for each of the top 10 users by                    post score, as returned from query 2.)
       
-      Refer to HiveProcessing, Pig Processing and Python Processing folders for detailed code and result screenshots
+    Refer to HiveProcessing, Pig Processing and Python Processing folders for detailed code and result screenshots
       
   3. Executed the Pig and Hive tasks on Google Cloud Platform (GCP)
 
