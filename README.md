@@ -11,7 +11,7 @@ Tasks Performed:
   1. Extracted the data from the StackExchange database using mysql commands
     Acquired the top 200,000 posts by viewcount. 
     
-    Refer to datafetchingCountQueries file for details
+    Refer to DataFetching/dataFetchingQueries.txt file for details
 
   2. Using MapReduce/Pig/Hive as required
     Using pig or mapreduce, extracted, transformed and loaded the data as applicable to get : 
