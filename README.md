@@ -24,4 +24,4 @@ Tasks Performed:
       
   3. Executed the Pig and Hive tasks on Google Cloud Platform (GCP)
 
-    Refer to Googlr Cloud Platform folder for the screenshots with GCP execution commands.
+    Refer to Google Cloud Platform folder for the screenshots with GCP execution commands.
