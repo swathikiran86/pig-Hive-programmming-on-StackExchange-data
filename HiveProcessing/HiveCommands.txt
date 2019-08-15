@@ -1,0 +1,60 @@
+#Creating the table with all the attributes and picking up the the data from specified location
+
+CREATE TABLE postsData (Id INT, Score INT, Body STRING, UserId INT, Title STRING, Tags STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION '/user/pig/cleanedData/';
+
+#Question1 Query
+SELECT Id, Score, UserId,Title from postsdata 
+ORDER BY score DESC
+LIMIT 10;
+
+#Question2 Query
+SELECT UserId, SUM(Score) AS Total_Score from postsdata 
+GROUP BY UserID
+ORDER BY Total_Score DESC
+LIMIT 10;
+
+#Question3 Query
+SELECT COUNT(DISTINCT UserID) AS unique_user_Count from postsdata 
+WHERE (BODY like '%hadoop%' OR Title like '%hadoop%' or Tags like '%hadoop%');
+
+#Data for Question 4
+  
+#Creating and inserting the Query2 results to temp table 4A
+CREATE TABLE topuserscores (UserId Int, totalscore int)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+INSERT INTO topuserscores
+SELECT UserId, SUM(Score) AS Total_Score from postsdata 
+GROUP BY UserID
+ORDER BY Total_Score DESC
+LIMIT 10;
+
+
+# Create another table for storing the text contents of these top users 4B
+
+CREATE TABLE topuserposts (UserId Int, Body STRING, Title STRING, Tags STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+
+INSERT INTO topuserposts
+SELECT UserId,Body,Title,Tags from postsdata 
+WHERE UserId IN (SELECT UserId from topuserscores)
+GROUP BY UserID, Body, Title, Tags;
+
+
+
+
+#COPY Data to HDFS
+
+INSERT OVERWRITE DIRECTORY '/user/hive/tabledata'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+SELECT UserId, Body, Title
+FROM TopUserPosts
+GROUP BY UserId, Body, Title;
+
